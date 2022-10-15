@@ -22,7 +22,7 @@ export default async function handler(
   }. There are ${userCount} users in the database.`;
   console.log(userCount);
 
-  await prisma.$disconnect();
+  // await prisma.$disconnect();
 
   res.status(200).json(message);
 }
