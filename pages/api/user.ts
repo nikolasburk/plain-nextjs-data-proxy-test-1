@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse<String>
 ) {
   console.log(`Invoking /user (via ${req.method || "unknown"} method)`);
-  // const { name }: { name: string | null} = req.query;
   const name = req.query.name as string | undefined;
   console.log(`Creating new user with name: ${name || "---"}`);
 
