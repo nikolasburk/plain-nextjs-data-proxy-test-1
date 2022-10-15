@@ -1,10 +1,11 @@
 import http from 'k6/http';
-import { sleep } from 'k6';
+// import { sleep } from 'k6';
 
 export default function () {
 
-  http.get(`https://plain-nextjs-data-proxy-test-1-o0wi2hyrf-nikolasburk.vercel.app/api/user`);
-  sleep(1);
+  http.get(`https://plain-nextjs-data-proxy-test-1.vercel.app/api/user?name=test-500-vus-30s`);
+  // https://plain-nextjs-data-proxy-test-1.vercel.app/api/user?name=jens
+  // sleep(1);
 
 }
 
@@ -43,6 +44,10 @@ export default function () {
 // SECOND batch (3 runs)
 // connection_limit=1 (set via Vercel UI and redeployed the app) 
 //
+// LIKELY YIELDED FALSE RESULTS BECUASE THE LOAD TEST WAS ACCESSING AN OLD DEPLOYMENT
+// http.get(`https://plain-nextjs-data-proxy-test-1-cgyc6flz7-nikolasburk.vercel.app/api/user?name=mirko`);
+// I DID NOT UPDATE THE ID INSIDE THE URL
+//
 // ... waited before each run until all connections from previous
 // run are free again (checked via Heroku UI, Terminal & SQL)
 //
@@ -72,19 +77,3 @@ export default function () {
 // 
 // ... waited before each run until all connections from previous
 // run are free again (checked via Heroku UI, Terminal & SQL)
-//
-// r1
-// $ k6 run --vus 40 --duration 10s loadtest.js
-// running (12.5s), 00/40 VUs, 263 complete and 0 interrupted iterations
-// http_req_failed................: 26.23% ✓ 69        ✗ 194 
-// 
-// r2
-// $ k6 run --vus 40 --duration 10s loadtest.js
-// running (12.5s), 00/40 VUs, 248 complete and 0 interrupted iterations
-// http_req_failed................: 33.87% ✓ 84        ✗ 164 
-// 
-// 
-// r3
-// $ k6 run --vus 40 --duration 10s loadtest.js
-// running (12.1s), 00/40 VUs, 265 complete and 0 interrupted iterations
-// http_req_failed................: 28.67% ✓ 76        ✗ 189 
