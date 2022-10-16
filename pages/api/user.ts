@@ -21,9 +21,9 @@ export default async function handler(
   }. There are ${userCount} users in the database.`;
   console.log(userCount);
 
-  // console.log(`Closing all connections in Prisma Client's connection pool ...`)
-  // await prisma.$disconnect();
-  // console.log(`Closed all connections.`)
+  console.log(`Closing all connections in Prisma Client's connection pool ...`)
+  await prisma.$disconnect();
+  console.log(`Closed all connections.`)
 
   res.status(200).json(message);
 }
