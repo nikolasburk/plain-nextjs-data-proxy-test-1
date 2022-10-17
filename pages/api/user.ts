@@ -19,11 +19,11 @@ export default async function handler(
   const message = `Created user with name: ${
     user.name || "---"
   }. There are ${userCount} users in the database.`;
-  console.log(userCount);
+  console.log(message);
 
-  // console.log(`Closing all connections in Prisma Client's connection pool ...`)
-  // await prisma.$disconnect();
-  // console.log(`Closed all connections.`)
+  console.log(`Closing all connections in Prisma Client's connection pool ...`)
+  await prisma.$disconnect();
+  console.log(`Closed all connections.`)
 
   res.status(200).json(message);
 }
