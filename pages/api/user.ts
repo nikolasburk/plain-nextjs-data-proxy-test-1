@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<String>
 ) {
-  console.log(`Invoking /user (via ${req.method || "unknown"} method)`);
+  console.log(`Invoking /user (via ${req.method || "unknown"})`);
   const name = req.query.name as string | undefined;
   console.log(`Creating new user with name: ${name || "---"}`);
 
@@ -21,9 +21,9 @@ export default async function handler(
   }. There are ${userCount} users in the database.`;
   console.log(message);
 
-  console.log(`Closing all connections in Prisma Client's connection pool ...`)
-  await prisma.$disconnect();
-  console.log(`Closed all connections.`)
+  // console.log(`Closing all connections in Prisma Client's connection pool ...`)
+  // await prisma.$disconnect();
+  // console.log(`Closed all connections.`)
 
   res.status(200).json(message);
 }
